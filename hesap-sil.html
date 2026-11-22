@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hesap Silme · Galerici Tycoon</title>
+<meta name="description" content="Galerici Tycoon hesabını ve tüm verilerini silme.">
+<meta name="theme-color" content="#0b1220">
+<link rel="icon" href="icon.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav><div class="wrap">
+  <a class="brand" href="index.html"><img src="icon.png" alt="">Galerici Tycoon</a>
+  <a class="l" href="gizlilik.html">Gizlilik</a>
+  <a class="l opt" href="kvkk.html">KVKK</a>
+  <a class="l on" href="hesap-sil.html">Hesap silme</a>
+</div></nav>
+
+<main class="doc">
+  <h2>Galerici Tycoon hesabını sil</h2>
+  <p class="meta">Uygulama: Galerici Tycoon · Geliştirici: <span id="dev"></span></p>
+  <p>Hesabını ve hesabına bağlı tüm verileri istediğin zaman silebilirsin. Aşağıdaki yollardan birini kullan.</p>
+
+  <h3>1. Oyunun içinden (en kolay)</h3>
+  <div class="steps" style="margin:0">
+    <div class="card"><div>Galerici Tycoon'u aç ve hesabına giriş yap.</div></div>
+    <div class="card"><div>Alttaki menüden <b>👤 Profil</b> sekmesine git.</div></div>
+    <div class="card"><div>Sayfanın en altındaki <b>❌ Hesabımı sil</b> düğmesine dokun ve onayla.</div></div>
+  </div>
+
+  <h3>2. Bu sayfadan (uygulama yüklü olmasa bile)</h3>
+  <div class="card">
+    <div id="step-login">
+      <p style="margin-top:0">Silmek istediğin hesapla giriş yap. Giriş yalnızca bu işlem için kullanılır, tarayıcıda hatırlanmaz.</p>
+      <button class="btn g" id="btn-google"><svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.6 5.4 2.6 13.2l7.9 6.2C12.4 13.7 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.7c-.6 3-2.3 5.5-4.8 7.2l7.7 6c4.5-4.2 6.9-10.3 6.9-17.7z"/><path fill="#FBBC05" d="M10.5 28.6c-.5-1.4-.8-3-.8-4.6s.3-3.2.8-4.6l-7.9-6.2C.9 16.5 0 20.1 0 24s.9 7.5 2.6 10.8l7.9-6.2z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.7-6c-2.1 1.4-4.9 2.3-8.2 2.3-6.3 0-11.6-4.2-13.5-9.9l-7.9 6.2C6.6 42.6 14.6 48 24 48z"/></svg>Google ile giriş yap</button>
+      <div class="or">veya e-posta ile</div>
+      <form id="f-login">
+        <label for="em">E-posta</label><input id="em" type="email" autocomplete="email" required maxlength="80">
+        <label for="pw">Şifre</label><input id="pw" type="password" autocomplete="current-password" required maxlength="64">
+        <button class="btn pri" type="submit">Giriş yap</button>
+      </form>
+      <p class="note" style="margin-top:16px">🍎 Apple ile giriş yaptıysan hesabını oyunun içinden (1. yol) veya e-posta ile (3. yol) silebilirsin.</p>
+    </div>
+    <div id="step-confirm" class="hidden">
+      <p style="margin-top:0">Giriş yapılan hesap: <b id="who"></b></p>
+      <p>Silinecekler: giriş bilgilerin, profilin (ad, soyad, doğum tarihi, galeri adı, fotoğraf), sıralama kaydın ve buluttaki oyun kaydın.</p>
+      <label class="chk"><input type="checkbox" id="sure"><span>Hesabımın ve tüm verilerimin <b>kalıcı olarak</b> silineceğini ve bunun geri alınamayacağını anlıyorum.</span></label>
+      <button class="btn bad" id="btn-del" disabled>Hesabımı kalıcı olarak sil</button>
+      <button class="btn" id="btn-cancel">Vazgeç</button>
+    </div>
+    <div id="step-done" class="hidden">
+      <p style="margin:0;font-size:18px">✅ Hesabın ve tüm verilerin silindi.</p>
+      <p>Telefonunda oyun yüklüyse uygulamayı kaldırarak cihazdaki kaydı da silebilirsin.</p>
+    </div>
+    <div class="msg" id="msg" role="status"></div>
+  </div>
+
+  <h3>3. E-posta ile talep</h3>
+  <p>Giriş yapamıyorsan, oyuna kayıtlı e-posta adresinden <a id="req" href="#"></a> adresine “Hesap silme talebi” konulu bir e-posta gönder. Talebin kimliğin doğrulandıktan sonra en geç 30 gün içinde yerine getirilir.</p>
+
+  <h3>Hangi veriler silinir, hangileri saklanır?</h3>
+  <ul>
+    <li><b>Hemen silinir:</b> hesap ve giriş bilgileri (e-posta, kullanıcı kimliği), profil (ad, soyad, doğum tarihi, galeri adı, profil fotoğrafı), sıralama kaydı, buluttaki oyun ilerlemesi, KVKK onay kaydı.</li>
+    <li><b>En geç 30 gün içinde silinir:</b> altyapı sağlayıcımız Google Firebase'in sistemlerindeki teknik yedek kopyalar.</li>
+    <li><b>Saklanabilir:</b> yalnızca yasal bir yükümlülük gerektiriyorsa, mevzuattaki süre boyunca güvenlik kayıtları (IP adresi gibi). Bunların dışında hiçbir veri saklanmaz.</li>
+    <li>Diğer oyuncuların cihazında önbelleğe alınmış sıralama listesinde adın en fazla 10 dakika daha görünebilir.</li>
+  </ul>
+  <p>Ayrıntılar için <a href="gizlilik.html">Gizlilik Politikası</a> ve <a href="kvkk.html">KVKK Aydınlatma Metni</a>'ne bakabilirsin.</p>
+</main>
+
+<footer><div class="wrap">
+  <div class="links"><a href="index.html">Ana sayfa</a><a href="gizlilik.html">Gizlilik Politikası</a><a href="kvkk.html">KVKK Aydınlatma Metni</a><a id="mail" href="#">İletişim</a></div>
+  <p class="disc">© <span id="y"></span> <span id="vs"></span></p>
+</div></footer>
+
+<script src="legal.js"></script>
+<script src="common.js"></script>
+<script src="firebase-config.js"></script>
+<script type="module">
+const VS=window.LEGAL_VS||{},$=id=>document.getElementById(id);
+$('dev').textContent=VS.ad;$('req').textContent=VS.eposta;
+if(VS.eposta&&VS.eposta[0]!=='[')$('req').href='mailto:'+VS.eposta+'?subject='+encodeURIComponent('Hesap silme talebi - Galerici Tycoon');
+const msg=(t,ok)=>{$('msg').textContent=t;$('msg').className='msg '+(ok?'ok':'err')};
+const ERR={'auth/invalid-credential':'E-posta veya şifre hatalı.','auth/wrong-password':'E-posta veya şifre hatalı.','auth/user-not-found':'Bu e-posta ile kayıt bulunamadı.','auth/too-many-requests':'Çok fazla deneme yaptın, biraz sonra tekrar dene.','auth/network-request-failed':'İnternet bağlantısı yok.','auth/unauthorized-domain':'Bu site Firebase\'de yetkili alan olarak eklenmemiş.','auth/popup-blocked':'Açılır pencere engellendi, tarayıcı ayarlarından izin ver.'};
+const fe=x=>{const c=String(x&&(x.code||x.message)||'');return /cancel|popup-closed/.test(c)?'':ERR[c]||'Bir hata oluştu ('+c+')'};
+const B='https://www.gstatic.com/firebasejs/10.14.1/';
+try{
+  const C=window.FB_CONFIG||{};if(!C.apiKey)throw new Error('Firebase ayarı bulunamadı.');
+  const [{initializeApp},A,F]=await Promise.all([import(B+'firebase-app.js'),import(B+'firebase-auth.js'),import(B+'firebase-firestore.js')]);
+  const app=initializeApp(C),auth=A.initializeAuth(app,{persistence:A.inMemoryPersistence,popupRedirectResolver:A.browserPopupRedirectResolver}),db=F.getFirestore(app);
+  auth.languageCode='tr';
+  const signedIn=u=>{$('who').textContent=u.email||u.uid;$('step-login').classList.add('hidden');$('step-confirm').classList.remove('hidden');msg('')};
+  $('btn-google').onclick=async()=>{msg('');try{signedIn((await A.signInWithPopup(auth,new A.GoogleAuthProvider())).user)}catch(x){const m=fe(x);if(m)msg(m)}};
+  $('f-login').onsubmit=async e=>{e.preventDefault();msg('');try{signedIn((await A.signInWithEmailAndPassword(auth,$('em').value.trim(),$('pw').value)).user)}catch(x){msg(fe(x))}};
+  $('sure').onchange=e=>$('btn-del').disabled=!e.target.checked;
+  $('btn-cancel').onclick=async()=>{await A.signOut(auth);$('sure').checked=false;$('btn-del').disabled=true;$('step-confirm').classList.add('hidden');$('step-login').classList.remove('hidden');msg('')};
+  $('btn-del').onclick=async()=>{
+    const u=auth.currentUser;if(!u)return;$('btn-del').disabled=true;msg('Siliniyor…',true);
+    try{await Promise.all([F.deleteDoc(F.doc(db,'players',u.uid)),F.deleteDoc(F.doc(db,'users',u.uid))]);await A.deleteUser(u);
+      $('step-confirm').classList.add('hidden');$('step-done').classList.remove('hidden');msg('')}
+    catch(x){$('btn-del').disabled=false;msg('Silinemedi: '+fe(x)+' Tekrar dene veya e-posta ile talep gönder.')}
+  };
+}catch(e){msg('Bağlantı kurulamadı: '+e.message+' Oyunun içinden veya e-posta ile silebilirsin.');$('btn-google').disabled=true;document.querySelector('#f-login button').disabled=true}
+</script>
+</body>
+</html>
