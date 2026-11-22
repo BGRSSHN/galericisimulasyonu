@@ -2,10 +2,10 @@
 // oyuncular yeni metni tekrar onaylar. Köşeli parantezli alanları doldur, yayından önce bir avukata okut.
 (function(){
 const VS={
-  ad:'[VERİ SORUMLUSU AD SOYAD / ŞİRKET UNVANI]',
-  adres:'[AÇIK ADRES]',
-  eposta:'[KVKK BAŞVURU E-POSTASI]',
-  site:'[WEB SİTESİ ADRESİ, örn. https://kullaniciadi.github.io/galerici-tycoon]',
+  ad:'[Ahmet Buğra Şahin]',
+  adres:'[]',
+  eposta:'[galericisimulasyonu@gmail.com]',
+  site:'[https://bgrsshn.github.io/galericisimulasyonu]',
 };
 const tarih='23 Kasım 2026';
 window.KVKK_V='1.0';
